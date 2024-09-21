@@ -1,0 +1,54 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cricadda::Sport Details</title>
+	<!-- Favicon -->
+	<link rel="stylesheet" href="../../../light-theme.css" />
+	<link rel="stylesheet" href="../../../responsive.css" />
+</head>
+<header class="main-header">
+    <div class="header-wrapper">
+        <div class="header-logo">
+            <a class="toggle_menu navbar-toggler" >
+                <svg>
+                    <use xlink:href="#togglemenu"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0);" title="logo">
+                <img src="../../../assets/images/logo.png">
+            </a>
+        </div>
+        <div class="headermenu">
+            <ul>
+                <li><a href="user/home" title="Home">Home</a></li>
+                <li><a href="user/sport" title="Sport">Sport</a></li>
+                <li><a href="user/inplay;" title="InPlay">InPlay</a></li>
+                <li class="nav-item dropdown">
+                    <div class="dropdown">
+                        <button class="dropbtn">More Info.</button>
+                        <div class="dropdown-content">
+                            <a   href="user/casino;" data-value="apple">casino</a>
+                            <a   href="user/horse-racing;" data-value="banana">Horse-racing</a>
+                            <a   href="user/horse-sport;" data-value="cherry">horse-sport</a>
+                            <a   href="user/acc-statement;" data-value="date">account statement</a>
+                        </div>
+                    </div>
+                  </li>
+            </ul>
+        </div>
+
+        <div class="header-right-wrap">
+            <div class="search-input">
+                <input type="search" class="form-control input-search-header" placeholder="Search here....">
+                <svg class="icon">
+                    <use xlink:href="#search"></use>
+                </svg>
+            </div>
+            <div class="btn-groups">
+                <button type="button" class="btn btn-secondary">Join</button>
+                <!-- <button *ngIf="holderName==''" type="button" class="btn btn-primary">Login</button> -->
+                <button (click)="logout()" type="button" class="btn btn-primary">Log-out</button>
+            </div>
+        </div>
+    </div>
+</header>
