@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <div class="card p-2 mt-5">
+            <div class="row mt-2">
+                <div class="col-md-8">
+                    <h2>User Management System</h2>
+                </div>
+                <div class="col-md-4 text-end">
+                    <input type="text" name="" id="" class="form-control" placeholder="Search" (keyup)="filter($event.target)">
+                    <button class="btn btn-sm btn-primary mt-2" (click)="AddNewPopUp()">+ Add New</button>
+                </div>
+
+            </div>
+            <div class="col-md-12 mt-2">
+
+                <hr>
+                total Entry: {{userId-1}}
+                <table style="width: 100%; text-align: center;">
+                    <tr>
+                  
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Posstion
+                        </th>
+                        <th colspan="2">
+                            Action
+                        </th>
+
+                    </tr>
+                    <tr
+                    *ngFor="let data of filterData | paginate:{itemsPerPage: pageSize, currentPage: currecntPage}; let i = index">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.position }}</td>
+                    <td class="text-end">
+                      <button class="btn btn-success btn-sm" (click)="SelectUser(data.id, data)">Edit</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger btn-sm" (click)="userDelete(data.id)">Delete</button>
+                    </td>
+                  </tr>
+                  
+
+                </table>
+                <pagination-controls (pageChange)="currecntPage=$event"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay verifybikedetailsdiv   right" *ngIf="addNew || updateUser">
+    <div class="popup2  " style=" overflow-x: unset; ">
+
+        <div class="modal-body ">
+            <form [formGroup]="UserForm" class="row">
+                <div class="col-md-12-mt-2">
+                    <h4 *ngIf="addNew">Add New User</h4>
+                    <h4 *ngIf="updateUser">Update User</h4>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <label for="">Full Name</label>
+                    <input type="text" name=" " class="form-control" placeholder="Enter Your Name" id=""
+                        formControlName="name">
+                    <span class="text-danger"
+                        *ngIf="UserForm.controls['name'].touched && UserForm.controls['name'].invalid">Enter Your
+                        Name</span>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <label for="">Email</label>
+                    <input type="email" name=" " class="form-control" placeholder="Email" id="" formControlName="email">
+                    <span class="text-danger"
+                        *ngIf="UserForm.controls['email'].touched && UserForm.controls['email'].invalid">Enter Valid
+                        Email</span>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <label for="">position</label>
+                    <input type="email" name=" " class="form-control" placeholder="position" id=""
+                        formControlName="position">
+                    <span class="text-danger"
+                        *ngIf="UserForm.controls['position'].touched && UserForm.controls['position'].invalid">Enter
+                        Your position</span>
+                </div>
+                <div class="col-md-12 mt-4 text-end">
+                    <button class="btn btn-sm btn-primary" style="margin-right: 2%;" *ngIf="addNew"
+                        [disabled]="UserForm.invalid" (click)="addUser()">Add</button>
+                    <button class="btn btn-sm btn-primary" style="margin-right: 2%;" *ngIf="updateUser"
+                        [disabled]="UserForm.invalid" (click)="userUpdate()">Update</button>
+                    <button class="btn btn-sm btn-secondary" (click)="close()">Close</button>
+                </div>
+            </form>
+        </div> 
+    </div> 
+</div>

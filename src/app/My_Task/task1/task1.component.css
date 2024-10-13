@@ -1,0 +1,10 @@
+
+th{
+    border-bottom: 1px solid black;
+    padding: 4px !important;
+
+}
+td{
+    position: relative;
+    top: 5px !important;
+}

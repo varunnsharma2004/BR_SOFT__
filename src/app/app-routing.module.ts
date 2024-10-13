@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { Task1Component } from './My_Task/task1/task1.component';
+import { Task2Component } from './My_Task/task-2/task-2.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'user',pathMatch:'full'},
-  {path:'user',
-  loadChildren:()=>import('../app/pages/pages.module')
-  .then(m=> m.PagesModule)
-},
-  
+  {path:'',redirectTo:'task-1',pathMatch:'full'},
+  {
+    path:'task-1',component:Task1Component
+  },
+  {
+    path:'task-2',component:Task2Component
+  }
 ];
 
 @NgModule({

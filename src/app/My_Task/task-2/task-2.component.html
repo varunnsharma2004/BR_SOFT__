@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="card p-2 mt-5">
+        <div class="row">
+            <div class="col-md-2 mt-3" *ngFor="let btn of buttons">
+                <button class="btn btn-sm" style="width: 95% ; color:white;cursor: pointer !important;" [ngClass]="btn.type === 'primary' ? 'btn-primary' :
+                           btn.type === 'secondary' ? 'btn-secondary' :
+                           btn.type === 'warning' ? 'btn-warning' :
+                           btn.type === 'info' ? 'btn-info' :
+                           btn.type === 'danger' ? 'btn-danger' : ''" (click)="OpenFieldPopUp(btn.name)">
+                    {{ btn.name }}
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4" *ngIf="fieldType.length==0">
+        <div class="col-md-12 mt-2">
+            <div class="card p-2">
+                <div class="row">
+                    <div class="col-md-12 mt-5 text-center">
+                        <img src="../../../assets/images/warning.png" width="10%" alt="">
+                    </div>
+                    <div class="col-md-12 mt-5 text-center">
+                        <h2><b> There is no any Type of Fields are available </b></h2>
+                        <h3 class="mt-2">click on top side button according to your fields</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row mt-3 " *ngIf="fieldType.length!=0">
+        <div class="card p-5 " style="width: 60%;margin-left: auto;margin-right: auto;">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h2><b>Dynamic Fields</b></h2>
+                    <hr>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <app-input-fields  [Fieldstype]="fieldType"></app-input-fields>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay verifybikedetailsdiv   right" *ngIf="fieldPopUp">
+    <div class="popup2   " style=" overflow-x: unset;">
+
+        <div class="modal-body ">
+            <div class="row">
+                <div class="col-md-11 mt-2">
+                    <h2><b>
+                            Add Your {{fieldName}} Fields
+                        </b></h2>
+                </div>
+                <div class="col-md-1 mt-3">
+                    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+                </div>
+                <hr>
+            </div>
+            <div class="row" [ngClass]="{'scroll':size>2}">
+                <div class="col-md-6">
+                    <label for="">Title <span class="text-danger">*</span></label>
+                    <input type="text" name="" id="" placeholder="Your Title" class="form-control mt-2"
+                        [(ngModel)]="Title">
+                </div>
+                <div class="col-md-6" *ngIf="fieldName=='text' || fieldName=='email'  || fieldName=='password'  ">
+                    <label for="">Placeholder <span class="text-danger">*</span></label>
+                    <input type="text" name="" id="" placeholder="Your Placeholder" class="form-control mt-2"
+                        [(ngModel)]="Placeholder">
+                </div>
+                <div class="col-md-6 mt-4 text-end"
+                    *ngIf="fieldName=='radio' || fieldName=='checkbox'  || fieldName=='select'  ">
+                    <button class="btn btn-sm btn-primary" style="width: 100%;
+                    position: relative;
+                    top: 10px;" (click)="addRedio_Check_Select_Fields()">Add Value</button>
+                </div>
+
+                <div class="col-md-12 mt-2 "*ngIf="fieldName=='radio'">
+                    <div *ngFor="let fields of Radiofields">
+                        <label for="">value for field {{ fields.id }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="fields.value"
+                            placeholder="Enter value for field {{ fields.id }} ">
+                        <button style="border: none; background-color: transparent;color: red;"
+                            (click)="removeRedioField(fields.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-2 "*ngIf="fieldName=='checkbox'">
+                    <div *ngFor="let fields of Checkfields">
+                        <label for="">value for field {{ fields.id }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="fields.value"
+                            placeholder="Enter value for field {{ fields.id }} ">
+                        <button style="border: none; background-color: transparent;color: red;"
+                            (click)="removeCheckField(fields.id)">Delete</button>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-2 " *ngIf="fieldName=='select'">
+                    <div *ngFor="let fields of selectFields">
+                        <label for="">value for field {{ fields.id }}</label>
+                        <input type="text" class="form-control" [(ngModel)]="fields.value"
+                            placeholder="Enter value for field {{ fields.id }} ">
+                        <button style="border: none; background-color: transparent;color: red;"
+                            (click)="removeSelectVal(fields.id)">Delete</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="">
+                    <button class="btn-primary btn" style="
+                        width: 99%;
+                        position: relative;
+                        top: 2pc;" (click)="AddFields()" [disabled]="Title==''" >Add Field</button>
+                </div>
+            </div>
+        </div> 
+    </div> 
+</div>

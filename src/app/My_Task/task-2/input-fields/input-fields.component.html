@@ -1,0 +1,68 @@
+<div class="row" *ngFor=" let field of Fieldstype">
+
+    <div class="col-md-10 mt-4" *ngIf="field.type=='text'">
+        <label for=""><b> {{field.label}} </b></label> &nbsp; <span class="text-danger"
+            style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <input [type]="field.type" class="form-control" [placeholder]="field.placeholder">
+      
+    </div>
+
+    <div class="col-md-10 mt-4" *ngIf="field.type=='email'">
+        <label for=""><b> {{field.label}} </b></label>&nbsp; <span class="text-danger"
+            style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <input [type]="field.type" class="form-control" [placeholder]="field.placeholder">
+    </div>
+    <div class="col-md-10 mt-4" *ngIf="field.type=='password'">
+        <label for=""><b> {{field.label}} </b></label>&nbsp; <span class="text-danger"
+            style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <input [type]="field.type" class="form-control" [placeholder]="field.placeholder">
+    </div>
+
+    <div class="col-md-10 mt-4" *ngIf="field.type=='radio'">
+
+        <label for=""><b> {{field.label}} </b></label>&nbsp; <span class="text-danger"
+            style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <div class="form-check" *ngFor="let opt of field.option">
+
+            <input class="form-check-input" [type]="field.type" [name]="field.label">
+            <label class="form-check-label" for="flexRadioDefault1">
+                {{opt.value}}
+            </label>
+        </div>
+    </div>
+
+
+    <div class="col-md-10 mt-4" *ngIf="field.type=='checkbox'">
+        <label for=""><b> {{field.label}} </b></label>&nbsp; <span class="text-danger"
+        style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <div class="form-check" *ngFor="let opt of field.option">
+            <input class="form-check-input" [type]="field.type">
+            <label class="form-check-label" for="flexRadioDefault1">
+                {{opt.value}}
+            </label>
+        </div>
+    </div>
+
+    
+
+    <div class="col-md-10 mt-4"
+        *ngIf="field.type=='select' && field.type!=='checkbox' && field.type!=='radio' && field.type!=='password'&& field.type!=='email' && field.type!=='text' ">
+        <label for=""><b> {{field.label}} </b></label>&nbsp; <span class="text-danger"
+        style="cursor: pointer;;font-size: 13px;" (click)="DeleteField(field.label)"> Delete</span>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select</option>
+            <option *ngFor="let option of field.option" [value]="option.value">{{option.value}}</option>
+
+        </select>
+    </div>
+
+
+   
+</div>
+<div class="row">
+    <div class="col-md-12 mt-4">
+        <button class="btn btn-primary btn-sm" (click)="submitForm()">
+            Submite
+        </button>
+    </div>
+</div>
